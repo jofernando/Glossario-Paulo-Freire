@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')    
+@section('content')
 <div class="container">
     <div style="padding-top: 80px;">
         <div class="imagem_fundo" style="background-image: url(imagens/img_grande_50.png)">
@@ -48,11 +48,18 @@
                             </div>
                         </div>
                         @endif
-                        <div class="col-md-12" style="margin-top: 5px;">
-                            <div style="float: right">
-                                @auth<a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp; 
-                                @endauth
-                                <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                        <div class="col-md-12">
+                            <div class="row justify-content-between" style="margin-top: 5px;">
+                                <div class="col-md-6">
+                                    <x-select-idioma/>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="float: right">
+                                        @auth<a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp;
+                                        @endauth
+                                        <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

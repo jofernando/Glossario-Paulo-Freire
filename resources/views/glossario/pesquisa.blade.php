@@ -61,12 +61,18 @@
                             </button>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-12" style="margin-top: 5px;">
-                        <div style="float: right">
-                            @auth<a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp; 
-                            @endauth
-                            <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <x-select-idioma/>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="float: right">
+                                    @auth<a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp;
+                                    @endauth
+                                    <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -129,23 +135,23 @@
                                         <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/m4a">
                                         <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/ogg">
                                         <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/flac">
-    
+
                                         <!-- Qualidades do aúdio -->
                                         <input id="audioHD" type="hidden" value="{{ asset('storage/' . $trecho->arquivo_sd) }}">
                                         <input id="audioSD" type="hidden" value="{{ asset('storage/' . $trecho->arquivo_sd) }}">
-                                        
+
                                         <!-- Imagens do background quando der play e pause -->
                                         <input id="gif"     type="hidden" value="url('{{ asset('player-audio/gifs/giphy.gif')}}') 450px105px 126px">
                                         <input id="gifStop" type="hidden" value="url('{{ asset('player-audio/gifs/giphy_stop.png')}}') 450px105px 68px">
-                                    </audio> 
-                                        
+                                    </audio>
+
                                 </div>
                             </div>
                             <input id="confirmacao{{ $trecho->id }}" type="hidden" value="0">
                             @else
                                 <img src="{{ asset('imagens/imagem_audio.png') }}" alt="paper" style="width: auto; max-width: 100%">
                             @endif
-                            
+
                         </div>
                     <div class="col">
                         <div class="row">
@@ -176,7 +182,7 @@
                                     @if (Auth()->user()->email === "admin@ufape.edu.br")
                                         <a href="" class="btn" data-toggle="modal" data-target="#excluirTrechoAudioModal_{{$trecho->id}}" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white; color: #acabab;"><img src="{{ asset('icones/excluir.svg') }}" alt="Logo" width="auto" height="25" />@lang('mensagens.Excluir')</a>
                                     @endif
-                                @endauth 
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -185,7 +191,7 @@
                     @endif
                 @endforeach
             </ul>
-                <!-- <div class="div_mais_resultados"> 
+                <!-- <div class="div_mais_resultados">
                     <div >
                         <output style="text-align: center;  border: 2px solid #d5d5d5; width: 39px; height: 39px; border-radius: 20px; padding-top: 5px; margin-right: 5px;">1</output>
                         <output style="text-align: center;  border: 2px solid #d5d5d5; width: 39px; height: 39px; border-radius: 20px; padding-top: 5px; margin-right: 5px;">2</output>
@@ -241,13 +247,13 @@
                                     <input id="videoHD" type="hidden" value="{{asset('storage/' . $trecho->arquivo_hd)}}">
                                     <input id="videoSD" type="hidden" value="{{asset('storage/' . $trecho->arquivo_sd)}}">
                                 </video>
-                                
+
                             </div>
                             <input id="confirmacao{{ $trecho->id }}" type="hidden" value="0">
                         @else
                             <img src="{{ asset('imagens/imagem_video.png') }}" alt="paper" style="position: relative; height: auto; width: 100%; top: 1rem; padding-right: 0.2rem;">
                         @endif
-                            
+
                         </div>
                         <div class="col">
                             <div class="row">
@@ -275,10 +281,10 @@
                                     </span>
                                     @auth
                                         <a href="{{ Route('editar', ['id' => $trecho->id]) }}"><button type="button" class="btn" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white;"><img src="{{ asset('icones/edit.svg') }}" alt="Logo" width="16,74" height="18,34" /><label class="campo_compartilhar_texto">@lang('mensagens.Editar')</label></button></a>
-                                        @if (Auth()->user()->email === "admin@ufape.edu.br") 
-                                            <a href="" class="btn" data-toggle="modal" data-target="#excluirTrechoVideoModal_{{$trecho->id}}" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white;"><img src="{{ asset('icones/excluir.svg') }}" alt="Logo" width="auto" height="25" /><label class="campo_compartilhar_texto">@lang('mensagens.Excluir')</label></a>    
+                                        @if (Auth()->user()->email === "admin@ufape.edu.br")
+                                            <a href="" class="btn" data-toggle="modal" data-target="#excluirTrechoVideoModal_{{$trecho->id}}" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white;"><img src="{{ asset('icones/excluir.svg') }}" alt="Logo" width="auto" height="25" /><label class="campo_compartilhar_texto">@lang('mensagens.Excluir')</label></a>
                                         @endif
-                                    @endauth 
+                                    @endauth
                                 </div>
                             </div>
                         </div>
@@ -300,7 +306,7 @@
     </div>
 </div>
 @endif
-            
+
 <script type="text/javascript">
     function buscarTodos(id) {
         var formulario = id.id;
@@ -313,13 +319,13 @@
         var inputBox = document.getElementById("boxBuscar");
 
         document.getElementById("boxVideo").value = inputBox.value;
-    } 
+    }
     function buscarAudios(id) {
         var formulario = id.id;
         var inputBox = document.getElementById("boxBuscar");
 
         document.getElementById("boxAudio").value = inputBox.value;
-    } 
+    }
 </script>
 <script type="text/javascript">
     function shareFacePopUp(url){

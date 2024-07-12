@@ -76,12 +76,19 @@
                             </div>
                         </div>
                     @endif
-                    <div class="col-md-12" style="margin-top: 5px;">
-                        <div style="float: right">
-                            @auth
-                                <a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp; 
-                            @endauth
-                                <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                    <div class="col-md-12 justify-content-between" style="margin-top: 5px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <x-select-idioma/>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="float: right">
+                                    @auth
+                                        <a href="{{ route('verbete.add') }}">@lang('mensagens.Adicionar Verbete')</a> &nbsp;
+                                    @endauth
+                                        <a href=" {{ route('listarPalavras') }} ">@lang('mensagens.Listar todas as palavras')</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,7 +106,7 @@
             <div style="margin-left: 12px; margin-top: -35px; margin-bottom: 2rem;">
                 <a id="subtitulo_lista">@lang('mensagens.Palavras com a letra') </a>
                 <output id="subtitulo_lista" id="letraSelecionada">{{$letraSelecionada}}</output>
-            </div>               
+            </div>
         </div>
         <div class="col-sm-12" id="lista_menu">
             <ul class="list-group">
@@ -202,7 +209,7 @@
                                     @if ($trecho->arquivo_sd != '')
                                         <div style="width: 100%; height: 140px">
                                             <div id="my_midia_{{ $trecho->id }}" class="audio-container" style="background-image: url('{{ asset('player-audio/gifs/giphy_stop.png')}}'); background-size: 600px; padding-bottom: 105px;" onclick="contarView('{{ $trecho->id }}', '{{ url( route('contarView', ['id' => $trecho->id ]) ) }}')">
-            
+
                                                 <!-- Chamar elemento audio com class player-audio -->
                                                 {{-- ATENÇÃO: os formatos e a ordem dos inputs influenciam no gif de fundo e nos botes de mudar qualidade --}}
                                                 <audio class="player-audio" >
@@ -211,16 +218,16 @@
                                                     <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/m4a">
                                                     <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/ogg">
                                                     <source src="{{ asset('storage/' . $trecho->arquivo_sd) }}" type="audio/flac">
-    
+
                                                     <!-- Qualidades do aúdio -->
                                                     <input id="audioHD" type="hidden" value="{{ asset('storage/' . $trecho->arquivo_sd) }}">
                                                     <input id="audioSD" type="hidden" value="{{ asset('storage/' . $trecho->arquivo_sd) }}">
-                                                    
+
                                                     <!-- Imagens do background quando der play e pause -->
                                                     <input id="gif"     type="hidden" value="url('{{ asset('player-audio/gifs/giphy.gif')}}') 600px140px 140px">
                                                     <input id="gifStop" type="hidden" value="url('{{ asset('player-audio/gifs/giphy_stop.png')}}') 600px140px 105px">
-                                                </audio> 
-                                                
+                                                </audio>
+
                                             </div>
                                         </div>
                                         <input id="confirmacao{{ $trecho->id }}" type="hidden" value="0">
@@ -255,7 +262,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-7" style="padding-top: 1rem; text-align: right;">
-                                    <a href="{{ $trecho->endereco_video }}" target="_blank">@lang('mensagens.Clique aqui')</a><span  style="color: #8b8b8b;font-size: 8;"> @lang('mensagens.para ouvir o áudio completo').</span> 
+                                    <a href="{{ $trecho->endereco_video }}" target="_blank">@lang('mensagens.Clique aqui')</a><span  style="color: #8b8b8b;font-size: 8;"> @lang('mensagens.para ouvir o áudio completo').</span>
                                 </div>
                             </div>
                             <hr>
@@ -270,10 +277,10 @@
                                         <a href="" class="btn" data-toggle="modal" data-target="#excluirTrechoAudioModal_{{$trecho->id}}" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white; color:#acabab; margin-right: 10px;"><img src="{{ asset('icones/excluir.svg') }}" alt="Logo" width="auto" height="25" />@lang('mensagens.Excluir')</a>
                                     @endif
                                     <a href="{{ Route('editar', ['id' => $trecho->id]) }}"><button type="button" class="btn" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white; color:#acabab;"><img src="{{ asset('icones/edit.svg') }}" alt="Logo" width="16,74" height="18,34" />@lang('mensagens.Editar')</button></a>
-                                @endauth 
+                                @endauth
                             </div>
                           </li>
-                
+
                         <!-- <div class="div_mais_resultados">
                             <div >
                                 <output style="text-align: center;  border: 2px solid #d5d5d5; width: 39px; height: 39px; border-radius: 20px; padding-top: 5px; margin-right: 5px;">1</output>
@@ -283,7 +290,7 @@
                                 <a href="">Ver todos.</a>
                             </div>
                         </div> -->
-            
+
                         @endif
                     @endforeach
                 </ul>
@@ -371,7 +378,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-7" style="padding-top: 1rem; text-align: right;">
-                                    <a href="{{ $trecho->endereco_video }}" target="_blank">@lang('mensagens.Clique aqui')</a><span  style="color: #8b8b8b;font-size: 8;"> @lang('mensagens.para assistir ao vídeo completo').</span> 
+                                    <a href="{{ $trecho->endereco_video }}" target="_blank">@lang('mensagens.Clique aqui')</a><span  style="color: #8b8b8b;font-size: 8;"> @lang('mensagens.para assistir ao vídeo completo').</span>
                                 </div>
                             </div>
                             <hr>
@@ -386,10 +393,10 @@
                                         <a href="" class="btn" data-toggle="modal" data-target="#excluirTrechoVideoModal_{{$trecho->id}}" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white; color:#acabab; margin-right: 10px;"><img src="{{ asset('icones/excluir.svg') }}" alt="Logo" width="auto" height="25" />@lang('mensagens.Excluir')</a>
                                     @endif
                                     <a href="{{ Route('editar', ['id' => $trecho->id]) }}"><button type="button" class="btn" style="border-color:#d5d5d5; border-width:2px; height: 40px; background-color: white; color:#acabab;"><img src="{{ asset('icones/edit.svg') }}" alt="Logo" width="16,74" height="18,34" />@lang('mensagens.Editar')</button></a>
-                                @endauth 
+                                @endauth
                             </div>
                         </li>
-                
+
                         <!-- <div class="div_mais_resultados">
                             <div >
                                 <output style="text-align: center;  border: 2px solid #d5d5d5; width: 39px; height: 39px; border-radius: 20px; padding-top: 5px; margin-right: 5px;">1</output>
@@ -399,7 +406,7 @@
                                 <a href="">Ver todos.</a>
                             </div>
                         </div> -->
-            
+
                         @endif
                     @endforeach
                 </ul>
